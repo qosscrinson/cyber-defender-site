@@ -1,3 +1,40 @@
 @use "./base.scss";
 
 // put your custom CSS here!
+/* мобильная аккуратность: страница не расползается вправо */
+/* мобильная аккуратность */
+html, body {
+  overflow-x: clip;
+}
+
+@media (max-width: 800px) {
+  /* flex-контейнеры могут сжиматься ниже ширины контента */
+  .page, .center, .left.sidebar, .right.sidebar,
+  .article-content, .popover-hint {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  /* таблица скроллится внутри себя, не растягивая колонку */
+  table {
+    display: block !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+  }
+
+  pre, code {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+}
+
+/* шапка: заголовок сжимается, поиск и иконки остаются в кадре */
+@media (max-width: 800px) {
+  .page-title {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
