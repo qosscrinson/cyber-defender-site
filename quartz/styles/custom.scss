@@ -1,35 +1,14 @@
 @use "./base.scss";
 
 // put your custom CSS here!
+
 /* мобильная аккуратность: страница не расползается вправо */
-/* мобильная аккуратность */
 html, body {
   overflow-x: clip;
 }
 
-@media (max-width: 800px) {
-  /* flex-контейнеры могут сжиматься ниже ширины контента */
-  .page, .center, .left.sidebar, .right.sidebar,
-  .article-content, .popover-hint {
-    min-width: 0;
-    max-width: 100%;
-  }
+/* ===== HUD: приборный слой (работает на всех экранах) ===== */
 
-  /* таблица скроллится внутри себя, не растягивая колонку */
-  table {
-    display: block !important;
-    max-width: 100% !important;
-    overflow-x: auto !important;
-  }
-
-  pre, code {
-    white-space: pre-wrap;
-    overflow-wrap: anywhere;
-  }
-}
-
-/* шапка: заголовок сжимается, поиск и иконки остаются в кадре */
-@media (max-width: 800px) {
 /* заголовки: борт-маркировка */
 h1, h2, h3 {
   letter-spacing: 0.04em;
@@ -52,51 +31,30 @@ blockquote,
   th { color: #eaf2ec; }
 }
 
-/* заголовок сайта в шапке — трафаретный Oswald */
+/* заголовок сайта в шапке — трафаретный Oswald, одна строка с многоточием */
 .page-title {
   font-family: "Oswald", sans-serif;
   letter-spacing: 0.05em;
-}
-/* ===== длинные строки: перенос внутри слова вместо съедания ===== */
-
-/* шапка: одна строка с многоточием, наглухо */
-.page-title {
   white-space: nowrap !important;
   overflow: hidden;
   text-overflow: ellipsis;
   min-width: 0;
+  overflow-wrap: normal;
+  word-break: keep-all;
 }
 
-/* заголовки, абзацы, списки, ссылки: длинный токен разбивается, а не обрезается */
+/* ===== перенос длинных строк вместо съедания ===== */
 article h1, article h2, article h3,
 article p, article li, article td,
 .breadcrumb-element a {
   overflow-wrap: anywhere;
 }
-/* ===== мобильная доводка списков и проводника ===== */
 
-/* заголовок сайта: одна строка с многоточием, наглухо */
-.page-title {
-  white-space: nowrap !important;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-width: 0;
+.article-title {
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
-/* страница папки: на мобильном дата сверху, ссылка под ней */
-@media (max-width: 800px) {
-  .section-li {
-    display: block;
-
-    & > .meta {
-      display: block;
-      text-align: left;
-      margin-bottom: 0.25rem;
-    }
-  }
-}
-
-/* длинные имена заметок в списке: перенос вместо обрезания */
 .section-li .section a.internal,
 .section-li .desc a.internal {
   overflow-wrap: anywhere;
@@ -108,5 +66,44 @@ article p, article li, article td,
 .explorer a {
   overflow-wrap: anywhere;
   word-break: break-word;
+}
+
+/* ===== мобильная доводка ===== */
+@media (max-width: 800px) {
+  /* flex-контейнеры могут сжиматься ниже ширины контента */
+  .page, .center, .left.sidebar, .right.sidebar,
+  .article-content, .popover-hint {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  /* заголовок сайта мельче, чтобы влезал в одну строку */
+  .page-title {
+    font-size: 1.15rem;
+    letter-spacing: 0.03em;
+  }
+
+  /* таблица скроллится внутри себя, не растягивая колонку */
+  table {
+    display: block !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+  }
+
+  pre, code {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  /* страница папки: дата сверху, ссылка под ней */
+  .section-li {
+    display: block;
+
+    & > .meta {
+      display: block;
+      text-align: left;
+      margin-bottom: 0.25rem;
+    }
+  }
 }
 
