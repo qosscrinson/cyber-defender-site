@@ -37,4 +37,49 @@ html, body {
     white-space: nowrap;
   }
 }
+/* ===== приборный слой: HUD без космоса ===== */
+
+/* заголовки: борт-маркировка */
+h1, h2, h3 {
+  letter-spacing: 0.04em;
+}
+
+/* подписи разделов и теги — моноширинные, как маркировка */
+a.internal, article tag .tags > tag {
+  font-family: "JetBrains Mono", monospace;
+}
+
+/* цитаты и callout'ы: зелёная приборная планка слева */
+blockquote,
+.callout {
+  border-left: 3px solid #39d353;
+}
+
+/* шапки таблиц: flight strip */
+.table thead, thead {
+  background: #26332a;
+  th { color: #eaf2ec; }
+}
+
+/* заголовок сайта в шапке — трафаретный Oswald */
+.page-title {
+  font-family: "Oswald", sans-serif;
+  letter-spacing: 0.05em;
+}
+/* ===== длинные строки: перенос внутри слова вместо съедания ===== */
+
+/* шапка: одна строка с многоточием, наглухо */
+.page-title {
+  white-space: nowrap !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+/* заголовки, абзацы, списки, ссылки: длинный токен разбивается, а не обрезается */
+article h1, article h2, article h3,
+article p, article li, article td,
+.breadcrumb-element a {
+  overflow-wrap: anywhere;
+}
 
