@@ -30,15 +30,6 @@ html, body {
 
 /* шапка: заголовок сжимается, поиск и иконки остаются в кадре */
 @media (max-width: 800px) {
-  .page-title {
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-}
-/* ===== приборный слой: HUD без космоса ===== */
-
 /* заголовки: борт-маркировка */
 h1, h2, h3 {
   letter-spacing: 0.04em;
@@ -81,5 +72,41 @@ article h1, article h2, article h3,
 article p, article li, article td,
 .breadcrumb-element a {
   overflow-wrap: anywhere;
+}
+/* ===== мобильная доводка списков и проводника ===== */
+
+/* заголовок сайта: одна строка с многоточием, наглухо */
+.page-title {
+  white-space: nowrap !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+/* страница папки: на мобильном дата сверху, ссылка под ней */
+@media (max-width: 800px) {
+  .section-li {
+    display: block;
+
+    & > .meta {
+      display: block;
+      text-align: left;
+      margin-bottom: 0.25rem;
+    }
+  }
+}
+
+/* длинные имена заметок в списке: перенос вместо обрезания */
+.section-li .section a.internal,
+.section-li .desc a.internal {
+  overflow-wrap: anywhere;
+}
+
+/* дерево проводника: длинные названия переносятся, а не срезаются */
+.explorer ul,
+.explorer li,
+.explorer a {
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
